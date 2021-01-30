@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+// Création du schéma des sauces avec type et requis ou non
 const sauceSchema = mongoose.Schema({
   userId: { type: String, required: true },  
   name: {type: String, require: true},
@@ -7,9 +7,9 @@ const sauceSchema = mongoose.Schema({
   description: {type: String, require: true},
   mainPepper: {type: String, require: true},
   imageUrl: {type: String, require: true},
-  heat: {type: Number, require: false}, 
-  likes: { type: Number, required: false},
-  dislikes: { type: Number, required: false},
+  heat: {type: Number, require: true}, 
+  likes: { type: Number, required: false, default : 0},
+  dislikes: {type: Number, required: false, default : 0},
   usersLiked: {type: [String], required: false},
   usersDisliked: {type: [String], required: false},
 });
