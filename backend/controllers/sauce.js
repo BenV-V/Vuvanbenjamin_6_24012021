@@ -17,10 +17,6 @@ exports.createSauce = (req, res, next) => {
 };
 // Modification d'une sauce
 exports.modifySauce = (req, res, next) => {
-    if (sauce.userId !== req.user) {  // on compare l'id de l'utilisateur créateur de la sauce et l'id de l'utilisateur de la requête
-    res.status(403).json({message: "accès interdit"}); 
-    return sauce;
-  }
   //Vérification de modification
   const sauceObject = req.file ?
     {
@@ -38,10 +34,6 @@ exports.deleteSauce = (req, res, next) => {
   // Identification de la sauce
   Sauce.findOne({ _id: req.params.id })
     .then(sauce => {
-      if (sauce.userId !== req.user) {  // on compare l'id de l'utilisateur créateur de la sauce et l'id de l'utilisateur de la requête
-      res.status(403).json({message: "accès interdit"}); 
-      return sauce;
-    }
       const filename = sauce.imageUrl.split('/images/')[1];
       // Suppression de la sauce
       fs.unlink(`images/${filename}`, () => {
